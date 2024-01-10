@@ -12,6 +12,10 @@ jobs:
     - uses: actions/setup-go@v4
       with:
         go-version: "1.16.1"
+    - name: Setup node
+      uses: actions/setup-node@v4
+    - name: install synk-to-html
+      run: npm install snyk-to-html -g
     - name: Snyk version
       run: echo "${{ steps.snyk.outputs.version }}"
     - name: Snyk test 
