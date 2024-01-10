@@ -1,0 +1,20 @@
+name: Snyk example
+on: push
+jobs:
+  security:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@master
+    - uses: snyk/actions/setup@master
+      id: snyk
+      with:
+        snyk-version: v1.1268.0
+    - uses: actions/setup-go@v4
+      with:
+        go-version: "1.16.1"
+    - name: Snyk version
+      run: echo "${{ steps.snyk.outputs.version }}"
+    - name: Snyk test 
+      run: snyk code test --org=affd167f-0cf1-44d1-8cd3-2aeec5ad5ca5
+      env:
+        SNYK_TOKEN: 14970dfb-dd5e-46ae-a323-04a9805a274a
