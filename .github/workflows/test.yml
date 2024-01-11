@@ -22,3 +22,8 @@ jobs:
       run: snyk code test --org=affd167f-0cf1-44d1-8cd3-2aeec5ad5ca5 --json | snyk-to-html -o results-code.html
       env:
         SNYK_TOKEN: 14970dfb-dd5e-46ae-a323-04a9805a274a
+    - name: Archive code coverage results
+      uses: actions/upload-artifact@v3
+      with:
+        name: code-coverage-report
+        path: results-code.html
